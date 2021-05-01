@@ -1,0 +1,19 @@
+---
+  - name: Install packages
+    apt:
+      name={{ item }}
+      state=present
+      update_cache=yes
+    with_items:
+        - git
+        - zip
+        - unzip
+        - htop
+        - vim
+        - tmux
+        - iotop
+
+  - name: Update all packages to the latest version
+    apt:
+      upgrade: dist
+      update_cache: yes

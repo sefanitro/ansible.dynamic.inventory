@@ -1,0 +1,30 @@
+---
+  - name: Install ntp (CentOS)
+    yum:
+      name: ntp
+      state: present
+    when: ansible_distribution == "CentOS"
+
+  - name: Install ntp (Ubuntu)
+    apt:
+      name: ntp
+      state: present
+    when: ansible_distribution == "Ubuntu"
+
+  - name: set timezone to {{ timezone }}
+    timezone:
+      name: "{{ timezone }}"
+
+  - name: Enable ntpd (CentOS)
+    service:
+      name: ntpd
+      state: started
+      enabled: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: Enable ntp (Ubuntu)
+    service:
+      name: ntp
+      state: started
+      enabled: yes
+    when: ansible_distribution == "Ubuntu"
