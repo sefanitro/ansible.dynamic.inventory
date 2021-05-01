@@ -1,0 +1,19 @@
+---
+  - name: Set authorized_keys
+    authorized_key:
+      user: '{{ remote_user }}'
+      state: present
+      key: '{{ item }}'
+    with_file:
+      - public-keys/miquel
+    tags: 
+      - add_sshkeys
+      
+#  - name: Unset authorized_key
+#    authorized_key:
+#      user: '{{ remote_user }}'
+#      state: absent
+#      key: '{{ item }}'
+#    with_file:
+#    tags: 
+#     - rm_sshkeys
